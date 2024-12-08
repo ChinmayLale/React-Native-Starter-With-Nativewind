@@ -1,3 +1,16 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "strict": true, // Enforce strict type-checking options
+    "esModuleInterop": true, // Enable compatibility with CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files for faster builds
+    "resolveJsonModule": true, // Allow importing JSON files as modules
+    "jsx": "react-native" // Specify JSX factory for React Native
+  },
+  "exclude": [
+    "node_modules", // Avoid including node_modules
+    "babel.config.js", // Exclude non-TypeScript files
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
