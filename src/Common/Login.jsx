@@ -5,72 +5,42 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
-  Alert,
-  Image,
+  StatusBar,
 } from 'react-native';
-import { getResponsiveHeight, getResponsiveWidth } from '../utils/dimensionsHelper';
+import {
+  getResponsiveHeight,
+  getResponsiveWidth,
+} from '../utils/dimensionsHelper';
+import FastImage from 'react-native-fast-image';
 
 function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (email === '' || password === '') {
-      Alert.alert('Error', 'Please fill in both fields.');
-    } else {
-      // Perform login logic here
-      Alert.alert('Success', `Logged in with email: ${email}`);
-    }
-  };
-
   return (
-    <SafeAreaView className="flex-1 justify-center items-center bg-gray-100 p-4">
-      <View
-        className="w-full  max-w-md bg-white p-6 rounded-lg shadow-md"
-        style={{
-          height:getResponsiveHeight(20),
-          width:getResponsiveWidth(100)
-        }}>
-        <TouchableOpacity
-          className="bg-white rounded-lg shadow-lg overflow-hidden w-[200px] h-[500px]"
-          onPress={() => {}}>
-          <Image
-            source={{uri: 'https://picsum.photos/500/300'}} // Check if this URL works
-            className="w-full h-40 object-cover"
+    <View className="flex-1 w-full bg-slate-50"> {/* Removed h-fit */}
+      <StatusBar
+        barStyle="light-content" // Changed to light-content since background is dark
+        translucent={true}
+        backgroundColor="transparent"
+      />
+      <View className="flex-1">
+        <View className=""> {/* Removed relative as it's not needed */}
+          <FastImage
+            style={{
+              width: getResponsiveWidth(100),
+              height: getResponsiveHeight(58), // Reduced height to leave space for content below
+              borderBottomLeftRadius: 40,
+              borderBottomRightRadius: 40,
+            }}
+            source={{
+              uri: 'https://cdn.pixabay.com/photo/2020/03/08/21/41/illustration-4913840_1280.jpg',
+            }}
           />
-          <View className="p-4">
-            <Text className="text-xl font-bold text-gray-900">
-              Welcome Back
-            </Text>
-            <Text className="text-sm text-gray-600 mt-2">
-              Please login to continue
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <View className="mt-6">
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-            className="w-full p-3 mt-2 border border-gray-300 rounded-md"
-            keyboardType="email-address"
-          />
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            secureTextEntry
-            className="w-full p-3 mt-4 border border-gray-300 rounded-md"
-          />
-          <TouchableOpacity
-            onPress={handleLogin}
-            className="bg-blue-500 p-3 mt-6 rounded-md items-center">
-            <Text className="text-white font-bold">Login</Text>
-          </TouchableOpacity>
+        </View>
+        <View className="p-4"> {/* Added padding for visibility */}
+          <Text className="text-[36px] font-mono text-slate-900 font-bold">Winter</Text>
+          <Text className="text-[36px] font-mono text-slate-900 font-bold">Vacation Trips</Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
