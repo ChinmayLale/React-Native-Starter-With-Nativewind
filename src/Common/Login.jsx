@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View, SafeAreaView, Alert } from 'react-native';
+import React, {useState} from 'react';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+  Alert,
+  Image,
+} from 'react-native';
+import { getResponsiveHeight, getResponsiveWidth } from '../utils/dimensionsHelper';
 
-// You can import NativeWind styles by adding them to the className prop
 function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,44 +25,53 @@ function LoginScreen() {
 
   return (
     <SafeAreaView className="flex-1 justify-center items-center bg-gray-100 p-4">
-      <View className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-        <Text className="text-2xl font-bold text-center mb-6 text-gray-800">Login</Text>
-        
-        <TextInput
-          className="h-12 p-3 mb-4 border border-gray-300 rounded-md"
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
-        
-        <TextInput
-          className="h-12 p-3 mb-6 border border-gray-300 rounded-md"
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        
+      <View
+        className="w-full  max-w-md bg-white p-6 rounded-lg shadow-md"
+        style={{
+          height:getResponsiveHeight(20),
+          width:getResponsiveWidth(100)
+        }}>
         <TouchableOpacity
-          className="w-full py-3 bg-blue-500 rounded-md hover:bg-blue-600"
-          onPress={handleLogin}
-        >
-          <Text className="text-white text-center text-lg">Log In</Text>
+          className="bg-white rounded-lg shadow-lg overflow-hidden w-[200px] h-[500px]"
+          onPress={() => {}}>
+          <Image
+            source={{uri: 'https://picsum.photos/500/300'}} // Check if this URL works
+            className="w-full h-40 object-cover"
+          />
+          <View className="p-4">
+            <Text className="text-xl font-bold text-gray-900">
+              Welcome Back
+            </Text>
+            <Text className="text-sm text-gray-600 mt-2">
+              Please login to continue
+            </Text>
+          </View>
         </TouchableOpacity>
 
-        <View className="mt-4 flex-row justify-center">
-          <Text className="text-gray-600">Don't have an account? </Text>
-          <TouchableOpacity>
-            <Text className="text-blue-500">Sign Up</Text>
+        <View className="mt-6">
+          <TextInput
+            value={email}
+            onChangeText={setEmail}
+            placeholder="Email"
+            className="w-full p-3 mt-2 border border-gray-300 rounded-md"
+            keyboardType="email-address"
+          />
+          <TextInput
+            value={password}
+            onChangeText={setPassword}
+            placeholder="Password"
+            secureTextEntry
+            className="w-full p-3 mt-4 border border-gray-300 rounded-md"
+          />
+          <TouchableOpacity
+            onPress={handleLogin}
+            className="bg-blue-500 p-3 mt-6 rounded-md items-center">
+            <Text className="text-white font-bold">Login</Text>
           </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
   );
 }
-
-
-
 
 export default LoginScreen;

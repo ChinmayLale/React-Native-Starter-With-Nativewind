@@ -6,7 +6,11 @@ const App = () => {
   const theme = useColorScheme();
   return (
     <View className='bg-red-50'>
-      <StatusBar backgroundColor={theme === 'dark' ? 'black':'lightgreen'}/>
+     <StatusBar
+        barStyle="dark-content" // You can use 'light-content' for white text if dark background
+        translucent={true} // Makes StatusBar transparent
+        backgroundColor="transparent" // Sets the background of the StatusBar to transparent
+      />
       <LoginScreen/>
     </View>
   )
